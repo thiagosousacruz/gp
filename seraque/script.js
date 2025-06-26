@@ -50,7 +50,7 @@ async function loadQuizData() {
     try {
         showLoading(true);
         
-        const response = await fetch('assets/gabarito.xlsx');
+        const response = await fetch('assets/gabarito_v03.xlsx');
         if (!response.ok) {
             throw new Error('Erro ao carregar arquivo Excel');
         }
