@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Será que têm? - Quiz GM</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <!-- Tela Inicial -->
+    <div id="welcome-screen" class="screen active">
+        <div class="container">
+            <div class="logo-section">
+                <h1 class="main-title">Será que têm?</h1>
+                <p class="subtitle">Quiz de Treinamento GM</p>
+            </div>
+            <div class="welcome-content">
+                <p class="description">
+                    Teste seus conhecimentos em relação ao novo Onix e seus concorrentes. 
+                    Para cada pergunta, selecione quais veículos você acredita que possuem a tecnologia descrita.
+                </p>
+                <button id="start-quiz-btn" class="btn btn-primary">
+                    Iniciar Quiz
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela do Quiz -->
+    <div id="quiz-screen" class="screen">
+        <div class="container">
+            <div class="quiz-header">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <p class="progress-text">
+                    Pergunta <span id="current-question">1</span> de <span id="total-questions">0</span>
+                </p>
+            </div>
+            
+            <div class="quiz-content">
+                <div class="question-card">
+                    <h2 id="question-text" class="question-title"></h2>
+                    <div id="vehicles-options" class="vehicles-grid">
+                        <!-- Opções de veículos serão inseridas dinamicamente -->
+                    </div>
+                </div>
+                
+                <div class="quiz-actions">
+                    <button id="prev-btn" class="btn btn-secondary" disabled>
+                        Anterior
+                    </button>
+                    <button id="next-btn" class="btn btn-primary">
+                        Próxima
+                    </button>
+                    <button id="finish-btn" class="btn btn-success" style="display: none;">
+                        Finalizar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Resultados -->
+    <div id="results-screen" class="screen">
+        <div class="container">
+            <div class="results-header">
+                <h1 class="results-title">Resultado Final</h1>
+                <div class="score-circle">
+                    <div class="score-number" id="final-score">0%</div>
+                    <div class="score-label">Acertos</div>
+                </div>
+                <p id="motivational-message" class="motivational-text"></p>
+            </div>
+            
+            <div class="results-content">
+                <div class="results-summary">
+                    <div class="summary-item correct">
+                        <span class="summary-icon">✓</span>
+                        <span class="summary-text">
+                            <span id="correct-count">0</span> respostas corretas
+                        </span>
+                    </div>
+                    <div class="summary-item incorrect">
+                        <span class="summary-icon">✗</span>
+                        <span class="summary-text">
+                            <span id="incorrect-count">0</span> respostas incorretas
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="detailed-results" id="detailed-results">
+                    <!-- Resultados detalhados serão inseridos dinamicamente -->
+                </div>
+                
+                <div class="results-actions">
+                    <button id="restart-btn" class="btn btn-primary">
+                        Reiniciar Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup de Senha -->
+    <div id="password-popup" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3>Acesso Restrito</h3>
+                <button id="close-popup" class="close-btn">&times;</button>
+            </div>
+            <div class="popup-body">
+                <p>Digite a senha para reiniciar o quiz:</p>
+                <input type="password" id="password-input" class="password-field" placeholder="Senha">
+                <div class="popup-actions">
+                    <button id="cancel-btn" class="btn btn-secondary">Cancelar</button>
+                    <button id="confirm-password-btn" class="btn btn-primary">Confirmar</button>
+                </div>
+                <div id="password-error" class="error-message" style="display: none;">
+                    Senha incorreta. Tente novamente.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Carregando quiz...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
